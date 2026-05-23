@@ -6,47 +6,30 @@
   <title>GPC Plomberie — Plomberie de confiance, intervention rapide garantie</title>
   <meta name="description" content="GPC Plomberie, votre artisan plombier chauffagiste réactif et fiable dans l'Oise. Disponibles 24h/24 du lundi au samedi. Fuites, débouchage, chaudières, chauffe-eau.">
   <style>
-    /* ── GOOGLE FONTS ── */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
 
-    /* ══════════════════════════════════════════
-       DESIGN PARTI PRIS : WARM / ARTISANAL PREMIUM
-       Géométrie industrielle + chaleur humaine
-       Bleu profond #003DA5 + vert vitalité #00A86B
-    ══════════════════════════════════════════ */
-
-    /* ── VARIABLES ── */
     :root {
-      --primary:       #003DA5;
-      --primary-dark:  #00278a;
+      --primary: #003DA5;
+      --primary-dark: #00278a;
       --primary-light: #1a52b8;
-      --accent:        #00A86B;
-      --accent-dark:   #008a57;
-      --accent-light:  #00c97f;
-      --warm:          #f5f0e8;
-      --warm-dark:     #ece5d4;
-      --dark:          #0d1117;
-      --dark-2:        #161c26;
-      --gray:          #6b7280;
-      --gray-light:    #9ca3af;
-      --white:         #ffffff;
-      --font-display:  'DM Serif Display', serif;
-      --font-title:    'Montserrat', sans-serif;
-      --font-body:     'DM Sans', sans-serif;
-      --radius:        16px;
-      --radius-sm:     8px;
-      --shadow-sm:     0 2px 8px rgba(0,61,165,0.08);
-      --shadow-md:     0 8px 32px rgba(0,61,165,0.12);
-      --shadow-lg:     0 24px 64px rgba(0,61,165,0.18);
+      --accent: #00A86B;
+      --accent-dark: #008a57;
+      --accent-light: #00c97f;
+      --warm: #f4f1eb;
+      --dark: #0d1117;
+      --dark-2: #161c26;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --font-title: 'Montserrat', sans-serif;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius: 16px;
+      --shadow-sm: 0 2px 8px rgba(0,61,165,0.08);
+      --shadow-md: 0 8px 32px rgba(0,61,165,0.14);
+      --shadow-lg: 0 24px 64px rgba(0,61,165,0.2);
     }
 
-    /* ── RESET & BASE ── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -57,153 +40,107 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE TEXTURE SVG inline ── */
-    body::before {
+    /* NOISE LAYER */
+    body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
+      z-index: 9998;
     }
 
-    /* ── KEYFRAMES ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* KEYFRAMES */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes slideLeft { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes slideRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+    @keyframes pulseRing { 0% { box-shadow:0 0 0 0 rgba(0,168,107,0.45); } 70% { box-shadow:0 0 0 18px rgba(0,168,107,0); } 100% { box-shadow:0 0 0 0 rgba(0,168,107,0); } }
+    @keyframes rotateSlow { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    @keyframes shimmer { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
+    @keyframes badgePop { 0% { transform:scale(0) rotate(-15deg); } 70% { transform:scale(1.1) rotate(4deg); } 100% { transform:scale(1) rotate(0deg); } }
+    @keyframes drawBar { from { width:0; } to { width:100%; } }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-50px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(50px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-12px); }
-    }
-
-    @keyframes pulse-ring {
-      0%   { box-shadow: 0 0 0 0 rgba(0,168,107,0.4); }
-      70%  { box-shadow: 0 0 0 16px rgba(0,168,107,0); }
-      100% { box-shadow: 0 0 0 0 rgba(0,168,107,0); }
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    @keyframes drawLine {
-      from { width: 0; }
-      to   { width: 60px; }
-    }
-
-    @keyframes rotateSlow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    /* ══════════════════════════════════════════
-       HEADER
-    ══════════════════════════════════════════ */
+    /* ═══════════════════ HEADER ═══════════════════ */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 1.25rem 2rem;
+      padding: 1.2rem 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+      transition: all 0.4s ease;
+      background: transparent;
     }
 
-    /* Header devient opaque au scroll via CSS */
-    header.scrolled,
-    body:not(.top) header {
-      background: rgba(0,61,165,0.97);
+    header.scrolled {
+      background: rgba(0,39,138,0.97);
       backdrop-filter: blur(20px);
-      box-shadow: 0 4px 32px rgba(0,0,0,0.2);
-      padding: 0.9rem 2rem;
-    }
-
-    /* Astuce CSS-only : header transparent au top via scroll-driven ou JS minimal inline */
-    .header-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
-      z-index: -1;
-      transition: opacity 0.4s;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+      padding: 0.85rem 2.5rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.8rem;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .logo-icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       background: var(--accent);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
       flex-shrink: 0;
-      transition: transform 0.3s ease;
     }
 
-    .logo:hover .logo-icon {
-      transform: rotate(-10deg) scale(1.1);
-    }
+    .logo:hover .logo-icon { transform: rotate(-12deg) scale(1.12); }
 
     .logo-text {
       font-family: var(--font-title);
       font-weight: 900;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--white);
       letter-spacing: -0.02em;
-      line-height: 1.1;
+      line-height: 1;
     }
 
     .logo-sub {
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.65);
-      letter-spacing: 0.12em;
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      margin-top: 2px;
     }
 
-    /* NAV DESKTOP */
+    /* NAV */
+    .menu-toggle { display: none; }
+
     nav {
       display: flex;
       align-items: center;
-      gap: 2.5rem;
+      gap: 2rem;
     }
 
     nav a {
       color: rgba(255,255,255,0.85);
       text-decoration: none;
       font-family: var(--font-title);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       position: relative;
       transition: color 0.2s;
@@ -212,42 +149,29 @@
     nav a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
       background: var(--accent);
       transition: width 0.3s ease;
     }
 
-    nav a:hover {
-      color: var(--white);
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
+    nav a:hover { color: var(--white); }
+    nav a:hover::after { width: 100%; }
 
     .nav-cta {
       background: var(--accent) !important;
       color: var(--white) !important;
-      padding: 0.6rem 1.4rem;
+      padding: 0.6rem 1.5rem !important;
       border-radius: 50px;
-      font-size: 0.82rem !important;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+      transition: all 0.25s ease !important;
+      animation: pulseRing 2.5s infinite;
     }
 
     .nav-cta::after { display: none !important; }
-
     .nav-cta:hover {
       background: var(--accent-light) !important;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,168,107,0.35) !important;
-    }
-
-    /* HAMBURGER CSS-ONLY */
-    .menu-toggle {
-      display: none;
+      box-shadow: 0 8px 24px rgba(0,168,107,0.4) !important;
     }
 
     .hamburger {
@@ -256,431 +180,371 @@
       gap: 5px;
       cursor: pointer;
       padding: 8px;
-      z-index: 101;
+      z-index: 1100;
+      position: relative;
     }
 
     .hamburger span {
       display: block;
-      width: 24px;
-      height: 2px;
+      width: 26px; height: 2px;
       background: var(--white);
       border-radius: 2px;
       transition: all 0.3s ease;
     }
 
-    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .menu-toggle:checked ~ .hamburger span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    .menu-toggle:checked ~ nav {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    /* ══════════════════════════════════════════
-       HERO
-    ══════════════════════════════════════════ */
+    /* ═══════════════════ HERO ═══════════════════ */
     .hero {
       min-height: 100vh;
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
       overflow: hidden;
-      padding: 8rem 2rem 5rem;
+      padding: 7rem 2.5rem 5rem;
     }
 
-    /* Gradient mesh background */
+    /* Mesh gradient background */
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(0,61,165,0.9) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(0,39,138,0.95) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 80%, rgba(0,168,107,0.25) 0%, transparent 50%),
-        linear-gradient(135deg, #001f6e 0%, #002d99 40%, #003DA5 70%, #001f6e 100%);
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0,61,165,0.95) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0,39,138,0.9) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 90% 80%, rgba(0,168,107,0.2) 0%, transparent 60%),
+        linear-gradient(135deg, #001f6b 0%, #003DA5 40%, #00278a 100%);
       z-index: 0;
     }
 
-    /* Geometric pattern */
+    /* Geometric pattern overlay */
     .hero-pattern {
       position: absolute;
       inset: 0;
-      z-index: 1;
-      opacity: 0.06;
       background-image:
         repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 60px,
-          rgba(255,255,255,0.5) 60px,
-          rgba(255,255,255,0.5) 61px
+          45deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 60px
         ),
         repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 60px,
-          rgba(255,255,255,0.5) 60px,
-          rgba(255,255,255,0.5) 61px
+          -45deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 60px
         );
+      z-index: 1;
     }
 
-    /* Decorative circles */
+    /* Floating decorative circles */
     .hero-decor {
       position: absolute;
-      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.07);
       z-index: 1;
-      pointer-events: none;
     }
 
-    .hero-decor::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50%;
+    .hero-decor-1 {
+      width: 500px; height: 500px;
+      top: -100px; right: -100px;
+      animation: rotateSlow 40s linear infinite;
     }
 
-    .hero-decor::after {
-      content: '';
+    .hero-decor-2 {
+      width: 300px; height: 300px;
+      bottom: 50px; left: -80px;
+      border-color: rgba(0,168,107,0.15);
+      animation: rotateSlow 28s linear infinite reverse;
+    }
+
+    .hero-decor-3 {
+      width: 160px; height: 160px;
+      top: 30%; right: 15%;
+      border-color: rgba(0,168,107,0.2);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Large background text */
+    .hero-watermark {
       position: absolute;
-      bottom: -200px;
-      left: -150px;
-      width: 700px;
-      height: 700px;
-      border: 1px solid rgba(0,168,107,0.15);
-      border-radius: 50%;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(6rem, 15vw, 16rem);
+      color: rgba(255,255,255,0.03);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      user-select: none;
+      z-index: 1;
+      white-space: nowrap;
     }
 
     .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
-      width: 100%;
     }
 
-    .hero-content {}
+    .hero-content { }
 
+    /* Badge */
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: rgba(0,168,107,0.15);
-      border: 1px solid rgba(0,168,107,0.35);
-      color: #4ade9e;
+      border: 1px solid rgba(0,168,107,0.3);
+      color: #5dfcb5;
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
       font-family: var(--font-title);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.45rem 1rem;
-      border-radius: 50px;
       margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s ease both;
+      animation: fadeIn 0.8s ease both;
     }
 
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
+    .badge-dot {
+      width: 8px; height: 8px;
       background: var(--accent);
       border-radius: 50%;
-      animation: pulse-ring 2s infinite;
+      animation: blink 1.5s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
-    .hero h1 {
+    .hero-title {
       font-family: var(--font-title);
-      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
       color: var(--white);
-      line-height: 1.08;
+      line-height: 1.1;
       letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-      animation: fadeUp 0.8s ease 0.1s both;
+      margin-bottom: 0.8rem;
+      animation: fadeUp 0.9s ease 0.15s both;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
-      font-family: var(--font-display);
+    .hero-title .accent-word {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline;
     }
 
     .hero-slogan {
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
       color: rgba(255,255,255,0.75);
-      font-weight: 300;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.9s ease 0.3s both;
+      line-height: 1.4;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
       margin-bottom: 2.5rem;
-      line-height: 1.6;
-      max-width: 500px;
-      animation: fadeUp 0.8s ease 0.2s both;
+      line-height: 1.8;
+      animation: fadeUp 0.9s ease 0.45s both;
     }
 
     .hero-actions {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      animation: fadeUp 0.8s ease 0.3s both;
+      animation: fadeUp 0.9s ease 0.6s both;
     }
 
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-      animation: fadeUp 0.8s ease 0.4s both;
-    }
-
-    .hero-stat {
-      text-align: left;
-    }
-
-    .hero-stat-num {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-    }
-
-    .hero-stat-num span {
-      color: var(--accent);
-    }
-
-    .hero-stat-label {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.55);
-      margin-top: 0.25rem;
-      line-height: 1.3;
-      font-weight: 400;
-    }
-
-    /* Hero visual side */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: slideInRight 1s ease 0.3s both;
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      padding: 2.5rem;
-      width: 100%;
-      max-width: 380px;
-    }
-
-    .hero-card-title {
-      font-family: var(--font-title);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-service-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .hero-service-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.92rem;
-      font-weight: 400;
-    }
-
-    .hero-service-list li span.check {
-      width: 24px;
-      height: 24px;
-      background: rgba(0,168,107,0.2);
-      border: 1px solid rgba(0,168,107,0.4);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      color: var(--accent);
-    }
-
-    .hero-urgence {
-      margin-top: 2rem;
-      padding: 1.25rem;
-      background: rgba(0,168,107,0.12);
-      border: 1px solid rgba(0,168,107,0.3);
-      border-radius: var(--radius-sm);
-      text-align: center;
-    }
-
-    .hero-urgence p {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.05em;
-      font-weight: 500;
-    }
-
-    .hero-urgence strong {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: -0.01em;
-    }
-
-    /* ── BOUTONS ── */
+    /* BUTTONS */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.95rem 2rem;
+      padding: 0.9rem 2rem;
       border-radius: 50px;
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 0.88rem;
-      letter-spacing: 0.03em;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       text-decoration: none;
-      transition: all 0.25s ease;
+      transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
       cursor: pointer;
       border: none;
-      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
     }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn:hover::before { opacity: 1; }
 
     .btn-primary {
       background: var(--accent);
       color: var(--white);
-      box-shadow: 0 4px 20px rgba(0,168,107,0.3);
+      box-shadow: 0 8px 32px rgba(0,168,107,0.35);
     }
 
     .btn-primary:hover {
       background: var(--accent-light);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,168,107,0.4);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,168,107,0.5);
     }
 
-    .btn-ghost {
-      background: rgba(255,255,255,0.1);
+    .btn-outline {
+      background: transparent;
       color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
     }
 
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.2);
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
       transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
 
-    .btn-solid {
+    .btn-dark {
       background: var(--primary);
       color: var(--white);
-      box-shadow: 0 4px 20px rgba(0,61,165,0.25);
+      box-shadow: var(--shadow-md);
     }
 
-    .btn-solid:hover {
-      background: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,61,165,0.35);
+    .btn-dark:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--shadow-lg);
     }
 
-    /* WAVE SEPARATOR */
+    /* HERO VISUAL CARD */
+    .hero-visual {
+      animation: slideRight 1s ease 0.4s both;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-card-main {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 2rem;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .hero-card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .hero-card-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .hero-stat:hover {
+      background: rgba(0,168,107,0.12);
+      border-color: rgba(0,168,107,0.3);
+      transform: translateY(-4px);
+    }
+
+    .stat-num {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--accent-light);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* ═══════════════════ WAVE SEPARATOR ═══════════════════ */
     .wave-sep {
       display: block;
       width: 100%;
       overflow: hidden;
       line-height: 0;
-      margin-bottom: -2px;
+      margin-top: -2px;
     }
 
-    .wave-sep svg {
-      display: block;
-      width: 100%;
+    .wave-sep svg { display: block; width: 100%; }
+
+    /* ═══════════════════ SECTIONS COMMON ═══════════════════ */
+    .section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 2.5rem);
     }
 
-    /* ══════════════════════════════════════════
-       SECTION TRUST BAR
-    ══════════════════════════════════════════ */
-    .trust-bar {
-      background: var(--primary-dark);
-      padding: 1.25rem 2rem;
-      overflow: hidden;
-    }
-
-    .trust-bar-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.82rem;
-      font-weight: 500;
-      font-family: var(--font-title);
-    }
-
-    .trust-item-icon {
-      font-size: 1.1rem;
-    }
-
-    .trust-divider {
-      width: 1px;
-      height: 24px;
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION BASE / HELPERS
-    ══════════════════════════════════════════ */
-    section {
-      padding: 6rem 2rem;
-    }
-
-    .container {
-      max-width: 1100px;
+    .section-inner {
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .section-label {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       font-family: var(--font-title);
-      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 1rem;
@@ -689,63 +553,50 @@
     .section-label::before {
       content: '';
       display: block;
-      width: 20px;
-      height: 2px;
+      width: 28px; height: 2px;
       background: var(--accent);
-      border-radius: 2px;
     }
 
-    h2 {
+    .section-title {
       font-family: var(--font-title);
-      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 900;
-      color: var(--primary);
-      line-height: 1.1;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--dark);
       letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
     }
 
-    h2 em {
-      font-style: normal;
-      color: var(--accent);
-      font-family: var(--font-display);
-    }
-
-    .section-desc {
+    .section-subtitle {
       font-size: 1.05rem;
       color: var(--gray);
-      max-width: 540px;
-      line-height: 1.7;
+      max-width: 520px;
+      line-height: 1.75;
     }
 
-    /* ══════════════════════════════════════════
-       SERVICES
-    ══════════════════════════════════════════ */
+    /* ═══════════════════ SERVICES ═══════════════════ */
     .services {
       background: var(--warm);
       position: relative;
-      overflow: hidden;
     }
 
-    /* Motif géométrique arrière-plan */
-    .services::before {
-      content: '';
+    .services-bg-shape {
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0,61,165,0.04) 0%, transparent 70%);
-      border-radius: 50%;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,61,165,0.03), rgba(0,168,107,0.04));
+      clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
       pointer-events: none;
     }
 
     .services-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
+      justify-content: space-between;
       align-items: flex-end;
-      gap: 2rem;
       margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
     .services-grid {
@@ -757,22 +608,31 @@
     .service-card {
       background: var(--white);
       border-radius: 20px;
-      padding: 2.25rem 2rem;
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(0,61,165,0.07);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: all 0.4s cubic-bezier(.34,1.3,.64,1);
       cursor: default;
+      group: true;
     }
 
     .service-card::before {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
@@ -781,129 +641,925 @@
     .service-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-lg);
+      border-color: transparent;
     }
 
-    .service-card:hover::before {
-      transform: scaleX(1);
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-card > * { position: relative; z-index: 1; }
+
+    .service-card:hover .service-icon-wrap,
+    .service-card:hover .service-title,
+    .service-card:hover .service-desc { color: var(--white); }
+
+    .service-card:hover .service-icon-wrap {
+      background: rgba(255,255,255,0.15);
     }
 
-    .service-card-num {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.75rem;
-      font-family: var(--font-title);
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: rgba(0,61,165,0.05);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      user-select: none;
-      transition: color 0.3s;
-    }
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.75); }
 
-    .service-card:hover .service-card-num {
-      color: rgba(0,168,107,0.08);
-    }
-
-    .service-icon {
-      width: 54px;
-      height: 54px;
-      background: linear-gradient(135deg, rgba(0,61,165,0.08), rgba(0,168,107,0.08));
+    .service-icon-wrap {
+      width: 56px; height: 56px;
+      background: rgba(0,61,165,0.07);
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.6rem;
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s ease, background 0.3s ease;
+      margin-bottom: 1.25rem;
+      transition: all 0.4s ease;
     }
 
-    .service-card:hover .service-icon {
-      transform: scale(1.1) rotate(-5deg);
-      background: linear-gradient(135deg, rgba(0,61,165,0.15), rgba(0,168,107,0.15));
-    }
-
-    .service-card h3 {
+    .service-title {
       font-family: var(--font-title);
-      font-size: 1.08rem;
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.65rem;
-      letter-spacing: -0.01em;
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+      transition: color 0.4s;
     }
 
-    .service-card p {
+    .service-desc {
       font-size: 0.88rem;
       color: var(--gray);
-      line-height: 1.65;
+      line-height: 1.7;
+      transition: color 0.4s;
     }
 
-    /* ══════════════════════════════════════════
-       ABOUT
-    ══════════════════════════════════════════ */
+    .service-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-family: var(--font-title);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: gap 0.3s ease, color 0.4s;
+    }
+
+    .service-card:hover .service-arrow {
+      color: rgba(255,255,255,0.9);
+      gap: 0.7rem;
+    }
+
+    /* ═══════════════════ DIAGONAL SEPARATOR ═══════════════════ */
+    .diag-sep {
+      height: 80px;
+      background: var(--white);
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+      margin-top: -1px;
+    }
+
+    /* ═══════════════════ ABOUT ═══════════════════ */
     .about {
       background: var(--white);
       position: relative;
+      overflow: hidden;
     }
 
-    .about-inner {
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 5fr 4fr;
       gap: 5rem;
       align-items: center;
     }
 
-    /* Visual 60% col */
-    .about-visual-col {
+    .about-visual {
       position: relative;
     }
 
-    .about-main-card {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    .about-main-block {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       border-radius: 24px;
-      padding: 3.5rem 3rem;
+      padding: 3rem;
       color: var(--white);
       position: relative;
       overflow: hidden;
-      animation: float 5s ease-in-out infinite;
     }
 
-    .about-main-card::before {
-      content: '';
+    .about-main-block::before {
+      content: '🔧';
       position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(0,168,107,0.2) 0%, transparent 70%);
-      border-radius: 50%;
+      bottom: -20px; right: -10px;
+      font-size: 9rem;
+      opacity: 0.06;
+      transform: rotate(-20deg);
+      pointer-events: none;
     }
 
-    .about-card-emoji {
-      font-size: 3.5rem;
-      margin-bottom: 1.25rem;
+    .about-main-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px,
+        transparent 1px, transparent 40px
+      );
+      border-radius: 24px;
+    }
+
+    .about-main-content { position: relative; z-index: 1; }
+
+    .about-highlight {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .about-highlight span { color: var(--accent-light); }
+
+    .about-highlight-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .coverage-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .coverage-tag {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-title);
+      transition: all 0.2s;
+    }
+
+    .coverage-tag:hover {
+      background: rgba(0,168,107,0.2);
+      border-color: rgba(0,168,107,0.4);
+      transform: translateY(-2px);
+    }
+
+    .about-floating-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px; height: 100px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(0,168,107,0.4);
+      animation: badgePop 0.8s cubic-bezier(.34,1.56,.64,1) 0.5s both;
+      z-index: 2;
+    }
+
+    .badge-num {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .badge-text {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* About right content */
+    .about-text h2 { margin-bottom: 1rem; }
+
+    .about-intro {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .trust-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--warm);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .trust-item:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .trust-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .trust-desc {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════ CONTACT ═══════════════════ */
+    .contact {
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 10% 50%, rgba(0,61,165,0.25) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 90% 20%, rgba(0,168,107,0.1) 0%, transparent 60%),
+        linear-gradient(180deg, #0d1117 0%, #161c26 100%);
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-left .section-title { color: var(--white); }
+    .contact-left .section-subtitle { color: rgba(255,255,255,0.55); }
+
+    .contact-big-phone {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .phone-icon-wrap {
+      width: 68px; height: 68px;
+      background: var(--accent);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      animation: pulseRing 2s infinite;
+      box-shadow: 0 8px 24px rgba(0,168,107,0.35);
+    }
+
+    .phone-label {
+      font-family: var(--font-title);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .phone-number {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
       display: block;
     }
 
-    .about-main-card h3 {
+    .phone-number:hover { color: var(--accent-light); }
+
+    .contact-infos {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info-row:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(0,168,107,0.2);
+      transform: translateX(5px);
+    }
+
+    .info-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-label {
       font-family: var(--font-title);
-      font-size: 1.45rem;
-      font-weight: 900;
-      margin-bottom: 0.75rem;
-      color: var(--white);
-      letter-spacing: -0.02em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.2rem;
     }
 
-    .about-main-card p {
+    .info-value {
       font-size: 0.9rem;
-      opacity: 0.75;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      font-weight: 400;
+      line-height: 1.5;
     }
 
-    .about-badge-card {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      background: var(--accent);
+    /* RIGHT: Hours card */
+    .hours-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .hours-card-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hours-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+
+    .hours-row:hover { background: rgba(255,255,255,0.05); }
+
+    .hours-day {
+      font-family: var(--font-title);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hours-time {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent-light);
+    }
+
+    .hours-row.off .hours-time { color: rgba(255,255,255,0.3); }
+    .hours-row.highlight { background: rgba(0,168,107,0.1); border: 1px solid rgba(0,168,107,0.2); }
+    .hours-row.highlight .hours-day { color: var(--white); }
+
+    .availability-banner {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avail-icon { font-size: 1.5rem; }
+
+    .avail-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--white);
+      display: block;
+    }
+
+    .avail-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* MAP PLACEHOLDER */
+    .map-area {
+      margin-top: 2.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
-      padding: 1.25rem
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .map-icon-box {
+      width: 52px; height: 52px;
+      background: rgba(0,61,165,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .map-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .map-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ZONE COVERAGE TAGS */
+    .zone-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .zone-tag {
+      background: rgba(0,61,165,0.2);
+      border: 1px solid rgba(0,61,165,0.3);
+      color: rgba(255,255,255,0.7);
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      font-family: var(--font-title);
+      transition: all 0.2s;
+    }
+
+    .zone-tag:hover {
+      background: rgba(0,61,165,0.4);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    footer {
+      background: var(--dark);
+      padding: 2.5rem 2.5rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-family: var(--font-title);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent-light); }
+
+    /* GZ BANNER */
+    .gz-banner {
+      background: var(--dark);
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+      font-family: var(--font-title);
+      letter-spacing: 0.05em;
+    }
+
+    .gz-banner a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .gz-banner a:hover { color: var(--accent-light); }
+
+    /* ═══════════════════ RESPONSIVE ═══════════════════ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { order: -1; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.5rem; }
+      header.scrolled { padding: 0.8rem 1.5rem; }
+
+      .hamburger { display: flex; }
+
+      nav {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,27,100,0.98);
+        backdrop-filter: blur(30px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: transform 0.4s cubic-bezier(.77,0,.18,1), opacity 0.4s;
+        z-index: 1050;
+      }
+
+      nav a {
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+      }
+
+      .menu-toggle:checked ~ nav {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero { padding: 7rem 1.5rem 4rem; text-align: center; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .hero-badge { margin: 0 auto 1.5rem; }
+
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* SCROLL ANIMATIONS VIA INTERSECTION (light CSS trick) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header id="main-header">
+  <a href="#" class="logo">
+    <div class="logo-icon">🔧</div>
+    <div>
+      <div class="logo-text">GPC Plomberie</div>
+      <span class="logo-sub">Artisan · Oise</span>
+    </div>
+  </a>
+
+  <input type="checkbox" class="menu-toggle" id="menuToggle">
+  <label class="hamburger" for="menuToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Zones</a>
+    <a href="#contact" class="nav-cta">Nous contacter</a>
+  </nav>
+</header>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-decor hero-decor-1"></div>
+  <div class="hero-decor hero-decor-2"></div>
+  <div class="hero-decor hero-decor-3"></div>
+  <div class="hero-watermark">GPC</div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Disponible 24h/24 · Lun – Sam
+      </div>
+      <h1 class="hero-title">
+        Votre plombier<br>
+        <span class="accent-word">de confiance</span><br>
+        dans l'Oise
+      </h1>
+      <p class="hero-slogan">Plomberie de confiance, intervention rapide garantie</p>
+      <p class="hero-desc">
+        Artisan plombier chauffagiste réactif et fiable. Fuites, débouchage, chaudières, chauffe-eau — nous intervenons rapidement avec des prix transparents et un travail soigné.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:" class="btn btn-primary">
+          📞 Appeler maintenant
+        </a>
+        <a href="#services" class="btn btn-outline">
+          Nos services →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <span class="hero-card-icon">🛠️</span>
+        <div class="hero-card-title">Intervention express</div>
+        <div class="hero-card-text">Déplacement rapide sur toute la zone Oise et alentours. Diagnostic sur place et devis transparent avant tout travail.</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-num">24h</span>
+          <span class="stat-label">Disponibilité</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num">6j/7</span>
+          <span class="stat-label">Ouverture</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Transparent</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-num">local</span>
+          <span class="stat-label">Artisan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave separator -->
+<div class="wave-sep">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" height="80" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#f4f1eb"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section class="section services" id="services">
+  <div class="services-bg-shape"></div>
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label reveal">Nos prestations</div>
+        <h2 class="section-title reveal reveal-delay-1">Tous vos besoins<br>en plomberie & chauffage</h2>
+      </div>
+      <p class="section-subtitle reveal reveal-delay-2">Interventions soignées, devis honnêtes, résultats durables. Nous traitons chaque chantier avec le même niveau d'exigence.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap">💧</div>
+        <div class="service-title">Détection & réparation de fuites</div>
+        <div class="service-desc">Localisation précise des fuites d'eau, réparation rapide pour éviter tout dégât des eaux. Intervention discrète et efficace.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap">🚿</div>
+        <div class="service-title">Débouchage de canalisations</div>
+        <div class="service-desc">Canalisations bouchées, siphon obstrué, WC bloqué — nous intervenons avec le matériel adapté pour un débouchage complet.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon-wrap">🔥</div>
+        <div class="service-title">Chauffe-eau & ballon</div>
+        <div class="service-desc">Installation, dépannage et remplacement de chauffe-eau électrique ou thermodynamique. Eau chaude rétablie rapidement.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap">🔩</div>
+        <div class="service-title">Robinetterie & sanitaires</div>
+        <div class="service-desc">Robinet qui fuit, mitigeur cassé, chasse d'eau défaillante — pose et réparation de toute robinetterie et accessoires sanitaires.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap">🏭</div>
+        <div class="service-title">Chaudières & chauffage</div>
+        <div class="service-desc">Pose, entretien annuel et dépannage de chaudières gaz. Maintien en conformité, optimisation de performance et sécurité garantie.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon-wrap">⚡</div>
+        <div class="service-title">Urgences & dépannage express</div>
+        <div class="service-desc">Fuite majeure, panne de chauffage, coupure d'eau chaude — notre équipe réactive se mobilise pour vous dans les plus brefs délais.</div>
+        <div class="service-arrow">En savoir plus →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Diagonal separator -->
+<div style="height:80px; background:linear-gradient(135deg,#f4f1eb 50%,#ffffff 50%); margin-top:-1px;"></div>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section class="section about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <!-- LEFT: visual block -->
+      <div class="about-visual reveal">
+        <div class="about-main-block">
+          <div class="about-main-pattern"></div>
+          <div class="about-main-content">
+            <div class="about-highlight">
+              Artisan local,<br><span>résultats</span><br>garantis
+            </div>
+            <p class="about-highlight-desc">
+              Basés au Blanc-Mesnil, nous couvrons tout le département de l'Oise avec la réactivité d'un artisan de proximité et le professionnalisme d'une entreprise structurée.
+            </p>
+            <div class="coverage-list">
+              <span class="coverage-tag">📍 Beauvais</span>
+              <span class="coverage-tag">📍 Compiègne</span>
+              <span class="coverage-tag">📍 Creil</span>
+              <span class="coverage-tag">📍 Senlis</span>
+              <span class="coverage-tag">📍 Chantilly</span>
+              <span class="coverage-tag">📍 Nogent-sur-Oise</span>
+              <span class="coverage-tag">📍 Lamorlaye</span>
+              <span class="coverage-tag">📍 & plus...</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-floating-badge">
+          <span class="badge-num">Lun</span>
+          <span class="badge-text">au Sam<br>24h/24</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: text -->
+      <div class="about-text">
+        <div class="section-label reveal">Qui sommes-nous</div>
+        <h2 class="section-title reveal reveal-delay-1">Un plombier professionnel,<br>à votre écoute</h2>
+        <p class="about-intro reveal reveal-delay-2">
+          GPC Plomberie, c'est un artisan plombier chauffagiste engagé pour la qualité et la proximité. Nous intervenons rapidement, communiquons clairement sur les prix et assurons un travail soigné dont vous pouvez être fier.
+        </p>
+
+        <ul class="trust-list">
+          <li class="trust-item reveal reveal-delay-1">
+            <span class="trust-icon">✅</span>
+            <div>
+              <div class="trust-title">Prix transparents & devis gratuit</div>
+              <div class="trust-desc">Pas de mauvaise surprise : nous vous expliquons chaque poste avant d'intervenir.</div>
+            </div>
+          </li>
+          <li class="trust-item reveal reveal-delay-2">
+            <span class="trust-icon">⚡</span>
+            <div>
+              <div class="trust-title">Réactivité maximale</div>
+              <div class="trust-desc">Disponible du lundi au samedi, 24h/24 pour vos urgences plomberie.</div>
+            </div>
+          </li>
+          <li class="trust-item reveal reveal-delay-3">
+            <span class="trust-icon">🏆</span>
+            <div>
+              <div class="trust-title">Travail soigné & durable</div>
+              <div class="trust-desc">Matériaux de qualité, finitions impeccables et garantie sur nos interventions.</div>
+            </div>
+          </li>
+          <li class="trust-item reveal reveal-delay-4">
+            <span class="trust-icon">📍</span>
+            <div>
+              <div class="trust-title">Vraie proximité locale</div>
+              <div class="trust-desc">Artisan ancré dans l'Oise, nous connaissons le territoire et ses spécificités.</div>
+            </div>
+          </li>
+        </ul>
+
+        <a href="#contact" class="btn btn-dark reveal reveal-delay-5">
+          Prendre contact →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave separator dark -->
+<div class="wave-sep">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" height="80" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z" fill="#161c26"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section class="section contact" id="contact">
+  <div class="contact-bg"></div>
+  <div class="section-inner contact-inner">
+    <div class="contact-grid">
+
+      <!-- LEFT -->
+      <div class="contact-left">
+        <div class="section-label reveal" style="color: var(--accent);">Contact & horaires</div>
+        <h2 class="section-title reveal reveal-delay-1">Besoin d'un plombier<br>rapidement ?</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Appelez-nous directement ou consultez
+</head>
+</body>
+</html>
