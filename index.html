@@ -4,336 +4,906 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GPC Plomberie — Plomberie de confiance, intervention rapide garantie</title>
-  <meta name="description" content="GPC Plomberie, votre artisan plombier chauffagiste réactif et fiable en Oise. Disponibles 24h/24 du lundi au samedi, nous intervenons rapidement pour fuites, dé">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Bold:wght@400;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="GPC Plomberie, votre artisan plombier chauffagiste réactif et fiable dans l'Oise. Disponibles 24h/24 du lundi au samedi. Fuites, débouchage, chaudières, chauffe-eau.">
   <style>
+    /* ── GOOGLE FONTS ── */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    /* ══════════════════════════════════════════
+       DESIGN PARTI PRIS : WARM / ARTISANAL PREMIUM
+       Géométrie industrielle + chaleur humaine
+       Bleu profond #003DA5 + vert vitalité #00A86B
+    ══════════════════════════════════════════ */
+
+    /* ── VARIABLES ── */
     :root {
-      --primary:   #003DA5;
-      --secondary: #FF6B35;
-      --accent:    #00A86B;
-      --font-titre: 'Montserrat Bold', serif;
-      --font-corps: 'Open Sans', sans-serif;
-      --white: #ffffff;
-      --light: #f8f8f6;
-      --dark:  #1a1a1a;
-      --gray:  #666666;
+      --primary:       #003DA5;
+      --primary-dark:  #00278a;
+      --primary-light: #1a52b8;
+      --accent:        #00A86B;
+      --accent-dark:   #008a57;
+      --accent-light:  #00c97f;
+      --warm:          #f5f0e8;
+      --warm-dark:     #ece5d4;
+      --dark:          #0d1117;
+      --dark-2:        #161c26;
+      --gray:          #6b7280;
+      --gray-light:    #9ca3af;
+      --white:         #ffffff;
+      --font-display:  'DM Serif Display', serif;
+      --font-title:    'Montserrat', sans-serif;
+      --font-body:     'DM Sans', sans-serif;
+      --radius:        16px;
+      --radius-sm:     8px;
+      --shadow-sm:     0 2px 8px rgba(0,61,165,0.08);
+      --shadow-md:     0 8px 32px rgba(0,61,165,0.12);
+      --shadow-lg:     0 24px 64px rgba(0,61,165,0.18);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── RESET & BASE ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-corps);
+      font-family: var(--font-body);
       color: var(--dark);
       background: var(--white);
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    /* ── HEADER ── */
+    /* ── NOISE TEXTURE SVG inline ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(0,168,107,0.4); }
+      70%  { box-shadow: 0 0 0 16px rgba(0,168,107,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,168,107,0); }
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes drawLine {
+      from { width: 0; }
+      to   { width: 60px; }
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ══════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════ */
     header {
-      background: var(--primary);
-      color: var(--white);
-      padding: 1rem 1.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
     }
-    header .logo {
-      font-family: var(--font-titre);
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    header nav a {
-      color: var(--white);
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-size: 0.9rem;
-      opacity: 0.85;
-      transition: opacity .2s;
-    }
-    header nav a:hover { opacity: 1; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 88vh;
-      background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 70%, black) 100%);
-      color: var(--white);
+    /* Header devient opaque au scroll via CSS */
+    header.scrolled,
+    body:not(.top) header {
+      background: rgba(0,61,165,0.97);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+      padding: 0.9rem 2rem;
+    }
+
+    /* Astuce CSS-only : header transparent au top via scroll-driven ou JS minimal inline */
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+      z-index: -1;
+      transition: opacity 0.4s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--accent);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 4rem 1.5rem;
-      position: relative;
-      overflow: hidden;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
     }
-    .hero::before {
+
+    .logo:hover .logo-icon {
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* NAV DESKTOP */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-family: var(--font-title);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    nav a::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 70% 30%, var(--accent) 0%, transparent 60%);
-      opacity: 0.15;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
     }
-    .hero-content { position: relative; max-width: 680px; }
-    .hero h1 {
-      font-family: var(--font-titre);
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+
+    nav a:hover {
+      color: var(--white);
     }
-    .hero p {
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      opacity: 0.9;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+
+    nav a:hover::after {
+      width: 100%;
     }
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 2.2rem;
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--white) !important;
+      padding: 0.6rem 1.4rem;
       border-radius: 50px;
-      font-weight: 500;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: transform .2s, box-shadow .2s;
-      cursor: pointer;
+      font-size: 0.82rem !important;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    .nav-cta::after { display: none !important; }
+
+    .nav-cta:hover {
+      background: var(--accent-light) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,168,107,0.35) !important;
+    }
+
+    /* HAMBURGER CSS-ONLY */
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .menu-toggle:checked ~ nav {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8rem 2rem 5rem;
+    }
+
+    /* Gradient mesh background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(0,61,165,0.9) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(0,39,138,0.95) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(0,168,107,0.25) 0%, transparent 50%),
+        linear-gradient(135deg, #001f6e 0%, #002d99 40%, #003DA5 70%, #001f6e 100%);
+      z-index: 0;
+    }
+
+    /* Geometric pattern */
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.06;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 60px,
+          rgba(255,255,255,0.5) 60px,
+          rgba(255,255,255,0.5) 61px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(255,255,255,0.5) 60px,
+          rgba(255,255,255,0.5) 61px
+        );
+    }
+
+    /* Decorative circles */
+    .hero-decor {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-decor::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .hero-decor::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      left: -150px;
+      width: 700px;
+      height: 700px;
+      border: 1px solid rgba(0,168,107,0.15);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,168,107,0.15);
+      border: 1px solid rgba(0,168,107,0.35);
+      color: #4ade9e;
+      font-family: var(--font-title);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse-ring 2s infinite;
+    }
+
+    .hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+      font-family: var(--font-display);
+    }
+
+    .hero-slogan {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      max-width: 500px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-stat-num span {
+      color: var(--accent);
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.25rem;
+      line-height: 1.3;
+      font-weight: 400;
+    }
+
+    /* Hero visual side */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: slideInRight 1s ease 0.3s both;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .hero-card-title {
+      font-family: var(--font-title);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .hero-service-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+
+    .hero-service-list li span.check {
+      width: 24px;
+      height: 24px;
+      background: rgba(0,168,107,0.2);
+      border: 1px solid rgba(0,168,107,0.4);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--accent);
+    }
+
+    .hero-urgence {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      background: rgba(0,168,107,0.12);
+      border: 1px solid rgba(0,168,107,0.3);
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+
+    .hero-urgence p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .hero-urgence strong {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    /* ── BOUTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.95rem 2rem;
+      border-radius: 50px;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
     .btn-primary {
       background: var(--accent);
       color: var(--white);
-    }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.7);
-      color: var(--white);
-      margin-left: 1rem;
+      box-shadow: 0 4px 20px rgba(0,168,107,0.3);
     }
 
-    /* ── SECTIONS ── */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 960px; margin: 0 auto; }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,168,107,0.4);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .btn-solid {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(0,61,165,0.25);
+    }
+
+    .btn-solid:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,61,165,0.35);
+    }
+
+    /* WAVE SEPARATOR */
+    .wave-sep {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-bottom: -2px;
+    }
+
+    .wave-sep svg {
+      display: block;
+      width: 100%;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION TRUST BAR
+    ══════════════════════════════════════════ */
+    .trust-bar {
+      background: var(--primary-dark);
+      padding: 1.25rem 2rem;
+      overflow: hidden;
+    }
+
+    .trust-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-family: var(--font-title);
+    }
+
+    .trust-item-icon {
+      font-size: 1.1rem;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION BASE / HELPERS
+    ══════════════════════════════════════════ */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .section-label {
-      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-title);
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-    h2 {
-      font-family: var(--font-titre);
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
-    /* ── SERVICES ── */
-    .services { background: var(--light); }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 em {
+      font-style: normal;
+      color: var(--accent);
+      font-family: var(--font-display);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════ */
+    .services {
+      background: var(--warm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Motif géométrique arrière-plan */
+    .services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,61,165,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-top: 2.5rem;
     }
+
     .service-card {
       background: var(--white);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      border-top: 4px solid var(--accent);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      transition: transform .2s, box-shadow .2s;
+      border-radius: 20px;
+      padding: 2.25rem 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: default;
     }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
-    .service-card .icon { font-size: 2rem; margin-bottom: 1rem; }
-    .service-card h3 {
-      font-family: var(--font-titre);
-      font-size: 1.15rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    .service-card p { font-size: 0.9rem; color: var(--gray); }
 
-    /* ── ABOUT ── */
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
     }
-    .about-visual {
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      border-radius: 16px;
-      height: 320px;
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card-num {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(0,61,165,0.05);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover .service-card-num {
+      color: rgba(0,168,107,0.08);
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, rgba(0,61,165,0.08), rgba(0,168,107,0.08));
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 5rem;
-      opacity: 0.85;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
-    .about-text p { color: var(--gray); margin-bottom: 1.5rem; }
 
-    /* ── CONTACT ── */
-    .contact { background: var(--primary); color: var(--white); text-align: center; }
-    .contact h2 { color: var(--white); }
-    .contact-grid {
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: linear-gradient(135deg, rgba(0,61,165,0.15), rgba(0,168,107,0.15));
+    }
+
+    .service-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════ */
+    .about {
+      background: var(--white);
+      position: relative;
+    }
+
+    .about-inner {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
     }
-    .contact-item { padding: 1.5rem; }
-    .contact-item .contact-icon { font-size: 2rem; margin-bottom: 0.75rem; opacity: 0.8; }
-    .contact-item h3 { font-family: var(--font-titre); font-size: 1rem; margin-bottom: 0.5rem; }
-    .contact-item p, .contact-item a {
-      font-size: 1.05rem;
-      opacity: 0.9;
+
+    /* Visual 60% col */
+    .about-visual-col {
+      position: relative;
+    }
+
+    .about-main-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 24px;
+      padding: 3.5rem 3rem;
       color: var(--white);
-      text-decoration: none;
-    }
-    .contact-item a:hover { opacity: 1; text-decoration: underline; }
-
-    /* ── BANNER GRIZZCORP ── */
-    .grizzcorp-banner {
-      background: #111;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 0.75rem 1rem;
-      font-size: 0.78rem;
-    }
-    .grizzcorp-banner a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .grizzcorp-banner a:hover { text-decoration: underline; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0a0a0a;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.82rem;
+      position: relative;
+      overflow: hidden;
+      animation: float 5s ease-in-out infinite;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      header nav { display: none; }
-      .btn-outline { display: none; }
-      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .about-visual { height: 180px; font-size: 3rem; }
+    .about-main-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(0,168,107,0.2) 0%, transparent 70%);
+      border-radius: 50%;
     }
-  </style>
-</head>
-<body>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">GPC Plomberie</div>
-  <nav>
-    <a href="#services">Nos services</a>
-    <a href="#about">À propos</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    .about-card-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>GPC Plomberie</h1>
-    <p>Plomberie de confiance, intervention rapide garantie</p>
-    <a href="#contact" class="btn btn-primary">Nous contacter</a>
-    <a href="#services" class="btn btn-outline">Nos services</a>
-  </div>
-</section>
+    .about-main-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-label">Ce que nous faisons</div>
-    <h2>Nos services</h2>
-    <div class="services-grid">
-      
-      <div class="service-card">
-        <div class="icon">🚿</div>
-        <h3>Dépannage</h3>
-        <p>Intervention rapide pour fuites et pannes.</p>
-      </div>
-      
-      <div class="service-card">
-        <div class="icon">🛁</div>
-        <h3>Installation</h3>
-        <p>Pose de sanitaires, douches et baignoires.</p>
-      </div>
-      
-      <div class="service-card">
-        <div class="icon">🔧</div>
-        <h3>Rénovation</h3>
-        <p>Rénovation complète de salle de bain.</p>
-      </div>
-      
-      <div class="service-card">
-        <div class="icon">🌡️</div>
-        <h3>Chauffage</h3>
-        <p>Installation et entretien de chaudières.</p>
-      </div>
-      
-    </div>
-  </div>
-</section>
+    .about-main-card p {
+      font-size: 0.9rem;
+      opacity: 0.75;
+      line-height: 1.7;
+    }
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-inner">
-      <div class="about-visual">🔧</div>
-      <div class="about-text">
-        <div class="section-label">Notre histoire</div>
-        <h2>À propos de nous</h2>
-        <p>GPC Plomberie, votre artisan plombier chauffagiste réactif et fiable en Oise. Disponibles 24h/24 du lundi au samedi, nous intervenons rapidement pour fuites, débouchage, chauffe-eau et chaudières avec transparence tarifaire. Une vraie proximité locale pour des travaux soignés et une satisfaction garantie.</p>
-        <p>Basés à Le Blanc Mesnil, nous mettons notre expertise au service de nos clients depuis de nombreuses années.</p>
-        <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="section-label">Retrouvez-nous</div>
-    <h2>Contactez-nous</h2>
-    <div class="contact-grid">
-      
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <h3>Adresse</h3>
-        <p>9 allée Charles Garnier 93150 Le Blanc Mesnil</p>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🕐</div>
-        <h3>Horaires</h3>
-        <p>Lundi–Vendredi : 8h–18h | Urgences 24h/24</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BANNER GRIZZCORP -->
-<div class="grizzcorp-banner">
-  Site vitrine créé par <a href="#">GrizzCorp</a> — Vous souhaitez personnaliser ce site ? <a href="mailto:jgrisel@gmail.com">Contactez-nous</a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2026 GPC Plomberie — Tous droits réservés</p>
-</footer>
-
-</body>
-</html>
+    .about-badge-card {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--accent);
+      border-radius: 16px;
+      padding: 1.25rem
